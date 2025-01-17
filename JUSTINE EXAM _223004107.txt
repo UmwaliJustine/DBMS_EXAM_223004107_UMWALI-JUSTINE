@@ -1,0 +1,768 @@
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+QUESTION 1
+mysql> create database america;
+Query OK, 1 row affected (0.00 sec)
+QUESTION 1
+mysql> use America;
+Database changed
+mysql> create table client_master;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql>  create table client_master(clientNO varchar(30),Name char(30),address char(30),city char(30),state char(30),bal_due decimal(30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into client_master values('C123','Justine','Ash_Ct','Columbus','Ohio','5000');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into client_master values('C124','James','musanze','madgascar','asia','43400');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into client_master values('C125','landry','ngoma','kigali','usa','42560');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into client_master values('C126','john','rubavu','west','america','42.60');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> ^C
+mysql>  insert into client_master values('C127','mamy','nyanza','west','africa','3500');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from client_master;
++----------+---------+---------+-----------+---------+---------+
+| clientNO | Name    | address | city      | state   | bal_due |
++----------+---------+---------+-----------+---------+---------+
+| C123     | Justine | Ash_Ct  | Columbus  | Ohio    |    5000 |
+| C124     | James   | musanze | madgascar | asia    |   43400 |
+| C125     | landry  | ngoma   | kigali    | usa     |   42560 |
+| C126     | john    | rubavu  | west      | america |      43 |
+| C127     | mamy    | nyanza  | west      | africa  |    3500 |
++----------+---------+---------+-----------+---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select *from client_master where bal_due='>5000';
+Empty set, 1 warning (0.00 sec)
+QUESTION 2
+mysql> select *from client_master where bal_due='5000';
++----------+---------+---------+----------+-------+---------+
+| clientNO | Name    | address | city     | state | bal_due |
++----------+---------+---------+----------+-------+---------+
+| C123     | Justine | Ash_Ct  | Columbus | Ohio  |    5000 |
++----------+---------+---------+----------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> update client_master set bal_due='5100' where clientno='c123';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from client_master;
++----------+---------+---------+-----------+---------+---------+
+| clientNO | Name    | address | city      | state   | bal_due |
++----------+---------+---------+-----------+---------+---------+
+| C123     | Justine | Ash_Ct  | Columbus  | Ohio    |    5100 |
+| C124     | James   | musanze | madgascar | asia    |   43400 |
+| C125     | landry  | ngoma   | kigali    | usa     |   42560 |
+| C126     | john    | rubavu  | west      | america |      43 |
+| C127     | mamy    | nyanza  | west      | africa  |    3500 |
++----------+---------+---------+-----------+---------+---------+
+5 rows in set (0.00 sec)
+QUESTION 4
+mysql>  alter table client_master rename to Client12;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from client12;
++----------+---------+---------+-----------+---------+---------+
+| clientNO | Name    | address | city      | state   | bal_due |
++----------+---------+---------+-----------+---------+---------+
+| C123     | Justine | Ash_Ct  | Columbus  | Ohio    |    5100 |
+| C124     | James   | musanze | madgascar | asia    |   43400 |
+| C125     | landry  | ngoma   | kigali    | usa     |   42560 |
+| C126     | john    | rubavu  | west      | america |      43 |
+| C127     | mamy    | nyanza  | west      | africa  |    3500 |
++----------+---------+---------+-----------+---------+---------+
+5 rows in set (0.00 sec)
+QUESTION 6
+ysql> create table employees(employee_id int primary key auto_increment,employee_names char(30),location char(30),tel int(20),salary varchar(30));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> insert into employees values('1','JUSTINE','NGOMA','0799325151','60000 frw');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employees values('2','MARIE','KIGALI','0783172866','56000 frw');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees values('3','ESHER','NYAGATARE','0789740047','30000 frw');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees values('4','KeLLY','BURERA','078950047','75000 frw');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees values('4','Pablo','musanze','079850947','17000 frw');
+ERROR 1062 (23000): Duplicate entry '4' for key 'employees.PRIMARY'
+mysql> select *from employees;
++-------------+----------------+----------+-----------+-----------+
+| employee_id | employee_names | location | tel       | salary    |
++-------------+----------------+----------+-----------+-----------+
+|           1 | JUSTINE           | NGOMA  | 799325151 | 60000 frw |
+|           2 | MARIE        | KIGALI     | 783172866| 56000 frw |
+|           3 | ESHER          | NYAGATARE   | 788740047 | 30000 frw |
+|           4 | KELLY         | BURERA  |  78850047 | 17000 frw |
++-------------+----------------+----------+-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DEPARTMENTS;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE DEPARTMENTS(department_id int primary key auto_increment,department_name char(30),manager_name char(30),departmant_supervisor char(30),employee_id int,foreign key(employee-id) references employees(employee_id)),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-id) references employees(employee_id)),' at line 1
+mysql> CREATE TABLE DEPARTMENTS(department_id int primary key auto_increment,department_name char(30),manager_name char(30),departmant_supervisor char(30),employee_id int,foreign key(employee_id) references employees(employee_id)),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',' at line 1
+mysql> CREATE TABLE DEPARTMENTS(department_id int primary key auto_increment,department_name char(30),manager_name char(30),departmant_supervisor char(30),employee_id int,foreign key(employee_id) references employees(employee_id));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into departments values('10','ICT','LODGE','Idrissa','1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into departments values('11','ECONOMIC','JUST','clarissa','2');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into departments values('12','design','John','joiane','3');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into departments values('13','sales','niyo','jud','4');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into departments values('14','finance','raissa','patrick','5');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from departments;
++---------------+-----------------+--------------+-----------------------+-------------+
+| department_id | department_name | manager_name | departmant_supervisor | employee_id |
++---------------+-----------------+--------------+-----------------------+-------------+
+|            10 | ICT              | lodge       | Idrissa               |           1 |
+|            11 | economic           | just         | ishimwe               |           2 |
+|            12 | design       | john         | joiane                 |           3 |
+|            13 | sales     | niyo         | jud                  |           4 |
+|            14 | finance         | raisa      | patrick               |           5 |
++---------------+-----------------+--------------+-----------------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> describe employees;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| employee_id    | int         | NO   | PRI | NULL    | auto_increment |
+| employee_names | char(30)    | YES  |     | NULL    |                |
+| location       | char(30)    | YES  |     | NULL    |                |
+| tel            | int         | YES  |     | NULL    |                |
+| salary         | varchar(30) | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> select *from departments left join employees department.employee_id=employees.employee_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.employee_id=employees.employee_id' at line 1
+mysql> select *from departments left join employees departments.employee_id=employees.employee_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.employee_id=employees.employee_id' at line 1
+mysql> select *from departments left join employees on departments.employee_id=employees.employee_id;
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+| department_id | department_name | manager_name | departmant_supervisor | employee_id | employee_id | employee_names | location | tel       | salary    |
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+|            10 | ICT              | lodge     | Idrissa               |           1 |           1 | JUSTINE         | NGOMA  | 799325151 | 50000 frw |
+|            11 | ECONOMIC          | just        | ishimwe               |           2 |           2 | MARIE        | KIGALI    | 783172866| 40000 frw |
+|            12 | design       | john         | joiane                 |           3 |           3 | ESHER           | NYAGATARE  | 788740047 | 30000 frw |
+|            13 | sales    | niyo         | jud                  |           4 |           4 | KELLY       | BURERA |  78850047 | 45000 frw |
+|            14 | finance         | raissa      | patrick               |           5 |        NULL | NULL           | NULL     |      NULL | NULL      |
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select *from departments right outer join employees on departments.employee_id=employees.employee_id;
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+| department_id | department_name | manager_name | departmant_supervisor | employee_id | employee_id | employee_names | location | tel       | salary    |
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+|            10 | IT              | lodge       | Idrissa               |           1 |           1 | justine          | ngoma | 799325151| 50000 frw |
+|            11 | economic          | just          | ishimwe              |           2 |           2 | marie       | kigali    | 783172866 | 40000 frw |
+|            12 | design       | john         | joiane                 |           3 |           3 | esher          | nyagatare   | 788740047 | 300
+|            13 | sales    | niyo        | jud                 |           4 |           4 | Kelly         | burera |  78850047 | 45000 frw |
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> select *from departments left outer join employees on departments.employee_id=employees.employee_id;
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+| department_id | department_name | manager_name | departmant_supervisor | employee_id | employee_id | employee_names | location | tel       | salary    |
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+|            10 | ICT              | LODGE       | Idrissa               |           1 |           1 | justine         |ngoma  | 799325151| 50000 frw |
+|            11 | ECONOMIC           | JUST         | ishimwe               |           2 |           2 | marie        | kigali     | 783172866 | 40000 frw |
+|            12 | DESIGN      | john         | joiane                 |           3 |           3 | esher         | nyagatare  | 788740047 | 30000 frw |
+|            13 | SALES     | JOHN        | JUD                 |           4 |           4 | Kelly        | burera  |  78850047 | 45000 frw |
+|            14 | finance         | RAISSA       | patrick               |           5 |        NULL | NULL           | NULL     |      NULL | NULL      |
++---------------+-----------------+--------------+-----------------------+-------------+-------------+----------------+----------+-----------+-----------+
+5 rows in set (0.00 sec)
+QUESTION 7
+mysql> create table STUDENT;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql>  create table STUDENT(studentid varchar(5),fullname varchar(25),GENDER VARCHAR(6),AGE INT(2),DEPARTMENT VARCHAR(30));
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql>  insert into STUDENT values('1';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql>  insert into STUDENT values('1','UMWALI JUSTINE','F','22','BIT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into STUDENT values('2','IRAGENA AGNES','F','24','ECONOMIC');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into STUDENT values('3','UWIMBABAZI JUDITH','F','27','CASS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into STUDENT values('4','NIROMUGISHA ELIE','F','30','CMCS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into STUDENT values('5','IRIHO JUSTIN','M','50','CMCS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into STUDENT values('6','IRIHO JOHN','M','10','ICT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM STUDENT;
++-----------+-------------------+--------+------+------------+
+| studentid | fullname          | GENDER | AGE  | DEPARTMENT |
++-----------+-------------------+--------+------+------------+
+| 1         | UMWALI JUSTINE    | F      |   22 | BIT        |
+| 2         | IRAGENA AGNES     | F      |   24 | ECONOMIC   |
+| 3         | UWIMBABAZI JUDITH | F      |   27 | CASS       |
+| 4         | NIROMUGISHA ELIE  | F      |   30 | CMCS       |
+| 5         | IRIHO JUSTIN      | M      |   50 | CMCS       |
+| 6         | IRIHO JOHN        | M      |   10 | ICT        |
++-----------+-------------------+--------+------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE GENDER='F';
++-----------+-------------------+--------+------+------------+
+| studentid | fullname          | GENDER | AGE  | DEPARTMENT |
++-----------+-------------------+--------+------+------------+
+| 1         | UMWALI JUSTINE    | F      |   22 | BIT        |
+| 2         | IRAGENA AGNES     | F      |   24 | ECONOMIC   |
+| 3         | UWIMBABAZI JUDITH | F      |   27 | CASS       |
+| 4         | NIROMUGISHA ELIE  | F      |   30 | CMCS       |
++-----------+-------------------+--------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE GENDER='M';
++-----------+--------------+--------+------+------------+
+| studentid | fullname     | GENDER | AGE  | DEPARTMENT |
++-----------+--------------+--------+------+------------+
+| 5         | IRIHO JUSTIN | M      |   50 | CMCS       |
+| 6         | IRIHO JOHN   | M      |   10 | ICT        |
++-----------+--------------+--------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> DELETE FROM STUDENT WHERE AGE <20;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM STUDENT;
++-----------+-------------------+--------+------+------------+
+| studentid | fullname          | GENDER | AGE  | DEPARTMENT |
++-----------+-------------------+--------+------+------------+
+| 1         | UMWALI JUSTINE    | F      |   22 | BIT        |
+| 2         | IRAGENA AGNES     | F      |   24 | ECONOMIC   |
+| 3         | UWIMBABAZI JUDITH | F      |   27 | CASS       |
+| 4         | NIROMUGISHA ELIE  | F      |   30 | CMCS       |
+| 5         | IRIHO JUSTIN      | M      |   50 | CMCS       |
++-----------+-------------------+--------+------+------------+
+5 rows in set (0.00 sec)
+QUESTION 9
+mysql> CREATE TABLE EMPLOYEES(EMPLOYEE_ID INT(20),first_name char(30),last_name char(30),email varchar(30),phone_number int(20),hire_date varchar(30),job_id int(10),salary varchar(30),commission_pct varchar(30),manager_id int(10),department_id int(30));
+Query OK, 0 rows affected, 5 warnings (0.02 sec)
+inser' at line 1
+mysql> insert into employees values('1','UMWALI','justine','just23@gmail.com','0788966587','12_may_2023','1000','50000','5','100','1001');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employees values('2','izere','raissa','raissa23@gmail.com','07889876587','7_may_2023','1001','48000','6','100','1002');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into employees values('3','irakoze','john','john23@gmail.com','07889076587','7_july_2024','1002','60000','7','101','1003');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into employees values('4','iriho','just','justin23@gmail.com','078769076587','7_august_2024','1003','70000','8','100','60');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into employees values('5','marie','rose','marie3@gmail.com','078768076587','7_september_2024','1004','30000','9','100','70');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into employees values('6','augustin','austin','Naugsto3@gmail.com','078768077587','20_july_2024','1005','4800','10','100','80');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into employees values('7','rugwiro','sando','sando3@gmail.com','07855077587','29_july_2024','1006','3000','11','107','80');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select *from employees
+    -> ;
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date        | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+|           1 | umwali  | justine    | just23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
+|           2 | izere   | raissa | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
+|           3 | irakoze    | john   | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           4 | iriho     | justin    | justin23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
+|           5 | marie    | rose     | marie3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
+|           6 | augustin      | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
+|           7 | rugwiro    | sando     | sando3@gmail.com  |   2147483647 | 29_july_2024     |   1006 | 3000   | 11             |        107 |            80 |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from employees;
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date        | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+|           1 | umwali | justine   | just23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
+|           2 | izere    | raissa | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
+|           3 | irakoze     | john   | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           4 | iriho    | justin   | justin23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
+|           5 | marie   | rose   | marie3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
+|           6 | augustin       | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
+|           7 | rugwiro    | sando    | sando3@gmail.com  |   2147483647 | 29_july_2024     |   1006 | 3000   | 11             |        107 |            80 |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select employee_id,first_name,last_name,salary from employees;
++-------------+------------+-----------+--------+
+| employee_id | first_name | last_name | salary |
++-------------+------------+-----------+--------+
+|           1 | umwali | justine    | 50000  |
+|           2 | izere   | raissa  | 48000  |
+|           3 | irakoze    | john    | 60000  |
+|           4 | iriho     | justin   | 70000  |
+|           5 | marie    | rose     | 30000  |
+|           6 | augustin      | austin    | 4800   |
+|           7 | rugwiro    | sando    | 3000   |
++-------------+------------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select *from employees where manager_id='100';
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date        | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+|           1 | umwali | justine   | just23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
+|           2 | izere   | raissa | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
+|           4 | irakoze     | john   | john23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
+|           5 | iriho    | justin    | justin3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
+|           6 | augustin      | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from employees where salary>=4800;
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date        | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+|           1 | umwali | justine   | iraka23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
+|           2 | izere   | raissa  | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
+|           3 | irakoze     | john    | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           4 | augustin    | austin    | naugsto23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
+|           5 | marie    | rose     | rose3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
+|           6 | augustin       | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
++-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+6 rows in set (0.03 sec)
+
+mysql> select *from employees where last_name='austin';
++-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date     | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
+|           3 | sangwa     | austin    | austa23@gmail.com   |   2147483647 | 7_july_2024   |   1002 | 60000  | 7              |        101 |          1003 |
+|           4 | rugira     | austin    | arugira23@gmail.com |   2147483647 | 7_august_2024 |   1003 | 70000  | 8              |        100 |            60 |
+|           6 | neza       | austin    | augsto3@gmail.com   |   2147483647 | 20_july_2024  |   1005 | 4800   | 10             |        100 |            80 |
++-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from employees where department='60','70','80';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ','70','80'' at line 1
+mysql> select *from employees where department_id='60','70','80';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ','70','80'' at line 1
+mysql> select *from employees where department_id='60';
++-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date     | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
+|           4 | augustin     | austin    | arugira23@gmail.com |   2147483647 | 7_august_2024 |   1003 | 70000  | 8              |        100 |            60 |
++-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select *from employees where department_id='70';
++-------------+------------+-----------+--------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email              | phone_number | hire_date        | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+--------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+|           5 | marie   | rose    | rose3@gmail.com |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
++-------------+------------+-----------+--------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select *from employees where department_id='80';
++-------------+------------+-----------+--------------------+--------------+--------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | first_name | last_name | email              | phone_number | hire_date    | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+--------------------+--------------+--------------+--------+--------+----------------+------------+---------------+
+|           6 | augustin    | austin    | naugsto3@gmail.com  |   2147483647 | 20_july_2024 |   1005 | 4800   | 10             |        100 |            80 |
+|           7 | rugwiro    | sando     | sando3@gmail.com |   2147483647 | 29_july_2024 |   1006 | 3000   | 11             |        107 |            80 |
++-------------+------------+-----------+--------------------+--------------+--------------+--------+--------+----------------+------------+---------------+
+2 rows in set (0.00 sec)
+question 10
+mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
+mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales value('100','COPINE','huye','1200','june');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('200','BINAH','nyanza','1300','july');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('300','CELINE','gasabo','1500','december');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from sales;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      100 | COPINE   | huye   |        1200 | june     |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      300 | CELINE  | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salesamount) as total_amount from sales;
++--------------+
+| total_amount |
++--------------+
+|         4000 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select AVG(salesamount) as average_amount from sales;
++----------------+
+| average_amount |
++----------------+
+|      1333.3333 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales where dob='december';
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE   | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales order by dob=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from sales order by dob;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE  | gasabo |        1500 | december |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      100 | COPINE    | huye   |        1200 | june     |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.02 sec
+mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
+mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales value('100','COPINE','huye','1200','june');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('200','BINAH','nyanza','1300','july');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('300','CELINE','gasabo','1500','december');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from sales;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      100 | COPINE   | huye   |        1200 | june     |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      300 | CELINE  | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salesamount) as total_amount from sales;
++--------------+
+| total_amount |
++--------------+
+|         4000 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select AVG(salesamount) as average_amount from sales;
++----------------+
+| average_amount |
++----------------+
+|      1333.3333 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales where dob='december';
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE   | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales order by dob=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from sales order by dob;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE  | gasabo |        1500 | december |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      100 | COPINE    | huye   |        1200 | june     |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.02 sec)
+mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
+mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales value('100','COPINE','huye','1200','june');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('200','BINAH','nyanza','1300','july');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('300','CELINE','gasabo','1500','december');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from sales;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      100 | COPINE   | huye   |        1200 | june     |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      300 | CELINE  | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salesamount) as total_amount from sales;
++--------------+
+| total_amount |
++--------------+
+|         4000 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select AVG(salesamount) as average_amount from sales;
++----------------+
+| average_amount |
++----------------+
+|      1333.3333 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales where dob='december';
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE   | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales order by dob=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from sales order by dob;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE  | gasabo |        1500 | december |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      100 | COPINE    | huye   |        1200 | june     |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.02 sec)
+mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
+mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales value('100','COPINE','huye','1200','june');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('200','BINAH','nyanza','1300','july');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('300','CELINE','gasabo','1500','december');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from sales;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      100 | COPINE   | huye   |        1200 | june     |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      300 | CELINE  | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salesamount) as total_amount from sales;
++--------------+
+| total_amount |
++--------------+
+|         4000 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select AVG(salesamount) as average_amount from sales;
++----------------+
+| average_amount |
++----------------+
+|      1333.3333 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales where dob='december';
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE   | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales order by dob=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from sales order by dob;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE  | gasabo |        1500 | december |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      100 | COPINE    | huye   |        1200 | june     |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.02 sec)
+mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
+mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales value('100','COPINE','huye','1200','june');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('200','BINAH','nyanza','1300','july');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('300','CELINE','gasabo','1500','december');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from sales;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      100 | COPINE   | huye   |        1200 | june     |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      300 | CELINE  | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salesamount) as total_amount from sales;
++--------------+
+| total_amount |
++--------------+
+|         4000 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select AVG(salesamount) as average_amount from sales;
++----------------+
+| average_amount |
++----------------+
+|      1333.3333 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales where dob='december';
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE   | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales order by dob=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from sales order by dob;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE  | gasabo |        1500 | december |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      100 | COPINE    | huye   |        1200 | june     |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.02 sec)
+mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
+mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales value('100','COPINE','huye','1200','june');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('200','BINAH','nyanza','1300','july');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales value('300','CELINE','gasabo','1500','december');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from sales;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      100 | COPINE   | huye   |        1200 | june     |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      300 | CELINE  | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salesamount) as total_amount from sales;
++--------------+
+| total_amount |
++--------------+
+|         4000 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select AVG(salesamount) as average_amount from sales;
++----------------+
+| average_amount |
++----------------+
+|      1333.3333 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales where dob='december';
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE   | gasabo |        1500 | december |
++----------+-----------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sales order by dob=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from sales order by dob;
++----------+-----------+--------+-------------+----------+
+| sales_no | salesname | branch | salesamount | dob      |
++----------+-----------+--------+-------------+----------+
+|      300 | CELINE  | gasabo |        1500 | december |
+|      200 | BINAH   | nyanza |        1300 | july     |
+|      100 | COPINE    | huye   |        1200 | june     |
++----------+-----------+--------+-------------+----------+
+3 rows in set (0.02 sec)
