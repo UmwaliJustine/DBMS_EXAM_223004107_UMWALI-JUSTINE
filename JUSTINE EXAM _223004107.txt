@@ -294,7 +294,7 @@ Query OK, 1 row affected (0.01 sec)
 mysql> insert into employees values('2','izere','raissa','raissa23@gmail.com','07889876587','7_may_2023','1001','48000','6','100','1002');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
-mysql> insert into employees values('3','irakoze','','john23@gmail.com','07889076587','7_july_2024','1002','60000','7','101','1003');
+mysql> insert into employees values('3','irakoze','austin','john23@gmail.com','07889076587','7_july_2024','1002','60000','7','101','1003');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
 mysql> insert into employees values('4','iriho','just','justin23@gmail.com','078769076587','7_august_2024','1003','70000','8','100','60');
@@ -370,7 +370,7 @@ mysql> select *from employees where salary>=4800;
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 |           1 | umwali | justine   | iraka23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
 |           2 | izere   | raissa  | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
-|           3 | irakoze     | john    | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           3 | irakoze     | austin   | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
 |           4 | augustin    | austin    | naugsto23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
 |           5 | marie    | rose     | rose3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
 |           6 | augustin       | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
