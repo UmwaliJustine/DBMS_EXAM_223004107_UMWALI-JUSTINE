@@ -33,7 +33,6 @@ Query OK, 1 row affected (0.00 sec)
 mysql> insert into client_master values('C126','john','rubavu','west','america','42.60');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
-mysql> ^C
 mysql>  insert into client_master values('C127','mamy','nyanza','west','africa','3500');
 Query OK, 1 row affected (0.00 sec)
 
@@ -52,13 +51,18 @@ mysql> select *from client_master;
 mysql> select *from client_master where bal_due='>5000';
 Empty set, 1 warning (0.00 sec)
 QUESTION 2
-mysql> select *from client_master where bal_due='5000';
-+----------+---------+---------+----------+-------+---------+
-| clientNO | Name    | address | city     | state | bal_due |
-+----------+---------+---------+----------+-------+---------+
-| C123     | Justine | Ash_Ct  | Columbus | Ohio  |    5000 |
-+----------+---------+---------+----------+-------+---------+
-1 row in set (0.00 sec)
+mysql> select *from client12 where bal_due ='<5000';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select *from client12 where bal_due>5000;
++----------+---------+---------+-----------+-------+---------+
+| clientNO | Name    | address | city      | state | bal_due |
++----------+---------+---------+-----------+-------+---------+
+| C123     | Justine | Ash_Ct  | Columbus  | Ohio  |    5100 |
+| C124     | James   | musanze | madgascar | asia  |   43400 |
+| C125     | landry  | ngoma   | kigali    | usa   |   42560 |
++----------+---------+---------+-----------+-------+---------+
+3 rows in set (0.00 sec)
 
 mysql> update client_master set bal_due='5100' where clientno='c123';
 Query OK, 1 row affected (0.00 sec)
@@ -290,7 +294,7 @@ Query OK, 1 row affected (0.01 sec)
 mysql> insert into employees values('2','izere','raissa','raissa23@gmail.com','07889876587','7_may_2023','1001','48000','6','100','1002');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
-mysql> insert into employees values('3','irakoze','austin','john23@gmail.com','07889076587','7_july_2024','1002','60000','7','101','1003');
+mysql> insert into employees values('3','irakoze','','john23@gmail.com','07889076587','7_july_2024','1002','60000','7','101','1003');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
 mysql> insert into employees values('4','iriho','just','justin23@gmail.com','078769076587','7_august_2024','1003','70000','8','100','60');
@@ -302,7 +306,7 @@ Query OK, 1 row affected, 1 warning (0.00 sec)
 mysql> insert into employees values('6','augustin','austin','Naugsto3@gmail.com','078768077587','20_july_2024','1005','4800','10','100','80');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
-mysql> insert into employees values('7','rugwiro','sando','sando3@gmail.com','07855077587','29_july_2024','1006','3000','11','107','80');
+mysql> insert into employees values('7','rugwiro','austin','sando3@gmail.com','07855077587','29_july_2024','1006','3000','11','107','80');
 Query OK, 1 row affected, 1 warning (0.00 sec)
 
 mysql> select *from employees
@@ -312,11 +316,11 @@ mysql> select *from employees
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 |           1 | umwali  | justine    | just23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
 |           2 | izere   | raissa | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
-|           3 | irakoze    | austin  | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           3 | irakoze    | austin   | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
 |           4 | iriho     | justin    | justin23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
 |           5 | marie    | rose     | marie3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
 |           6 | augustin      | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
-|           7 | rugwiro    | austin   | sando3@gmail.com  |   2147483647 | 29_july_2024     |   1006 | 3000   | 11             |        107 |            80 |
+|           7 | rugwiro    | austin    | sando3@gmail.com  |   2147483647 | 29_july_2024     |   1006 | 3000   | 11             |        107 |            80 |
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 7 rows in set (0.00 sec)
 
@@ -326,11 +330,11 @@ mysql> select *from employees;
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 |           1 | umwali | justine   | just23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
 |           2 | izere    | raissa | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
-|           3 | irakoze     | austin  | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           3 | irakoze     | austin   | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
 |           4 | iriho    | justin   | justin23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
 |           5 | marie   | rose   | marie3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
 |           6 | augustin       | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
-|           7 | rugwiro    | austin    | sando3@gmail.com  |   2147483647 | 29_july_2024     |   1006 | 3000   | 11             |        107 |            80 |
+|           7 | rugwiro    | austin   | sando3@gmail.com  |   2147483647 | 29_july_2024     |   1006 | 3000   | 11             |        107 |            80 |
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 7 rows in set (0.00 sec)
 
@@ -354,7 +358,7 @@ mysql> select *from employees where manager_id='100';
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 |           1 | umwali | justine   | just23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
 |           2 | izere   | raissa | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
-|           4 | irakoze     | austin  | john23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
+|           4 | irakoze     | austin   | john23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
 |           5 | iriho    | justin    | justin3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
 |           6 | augustin      | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
@@ -366,7 +370,7 @@ mysql> select *from employees where salary>=4800;
 +-------------+------------+-----------+---------------------+--------------+------------------+--------+--------+----------------+------------+---------------+
 |           1 | umwali | justine   | iraka23@gmail.com   |    788966587 | 12_may_2023      |   1000 | 50000  | 5              |        100 |          1001 |
 |           2 | izere   | raissa  | raissa23@gmail.com |   2147483647 | 7_may_2023       |   1001 | 48000  | 6              |        100 |          1002 |
-|           3 | irakoze     | austin   | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
+|           3 | irakoze     | john    | john23@gmail.com   |   2147483647 | 7_july_2024      |   1002 | 60000  | 7              |        101 |          1003 |
 |           4 | augustin    | austin    | naugsto23@gmail.com |   2147483647 | 7_august_2024    |   1003 | 70000  | 8              |        100 |            60 |
 |           5 | marie    | rose     | rose3@gmail.com  |   2147483647 | 7_september_2024 |   1004 | 30000  | 9              |        100 |            70 |
 |           6 | augustin       | austin    | naugsto3@gmail.com   |   2147483647 | 20_july_2024     |   1005 | 4800   | 10             |        100 |            80 |
@@ -377,9 +381,9 @@ mysql> select *from employees where last_name='austin';
 +-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
 | EMPLOYEE_ID | first_name | last_name | email               | phone_number | hire_date     | job_id | salary | commission_pct | manager_id | department_id |
 +-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
-|           3 | irakoze    | austin    | austa23@gmail.com   |   2147483647 | 7_july_2024   |   1002 | 60000  | 7              |        101 |          1003 |
+|           3 | irakoze     | austin    | austa23@gmail.com   |   2147483647 | 7_july_2024   |   1002 | 60000  | 7              |        101 |          1003 |
 |           4 | rugira     | austin    | arugira23@gmail.com |   2147483647 | 7_august_2024 |   1003 | 70000  | 8              |        100 |            60 |
-|           6 | augustin     | austin    | augsto3@gmail.com   |   2147483647 | 20_july_2024  |   1005 | 4800   | 10             |        100 |            80 |
+|           6 | neza       | austin    | augsto3@gmail.com   |   2147483647 | 20_july_2024  |   1005 | 4800   | 10             |        100 |            80 |
 +-------------+------------+-----------+---------------------+--------------+---------------+--------+--------+----------------+------------+---------------+
 3 rows in set (0.00 sec)
 
@@ -471,239 +475,3 @@ mysql> select *from sales order by dob;
 |      100 | COPINE    | huye   |        1200 | june     |
 +----------+-----------+--------+-------------+----------+
 3 rows in set (0.02 sec
-mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
-mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-Query OK, 0 rows affected, 2 warnings (0.02 sec)
-
-mysql> insert into sales value('100','COPINE','huye','1200','june');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('200','BINAH','nyanza','1300','july');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('300','CELINE','gasabo','1500','december');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select *from sales;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      100 | COPINE   | huye   |        1200 | june     |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      300 | CELINE  | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.00 sec)
-
-mysql> select sum(salesamount) as total_amount from sales;
-+--------------+
-| total_amount |
-+--------------+
-|         4000 |
-+--------------+
-1 row in set (0.01 sec)
-
-mysql> select AVG(salesamount) as average_amount from sales;
-+----------------+
-| average_amount |
-+----------------+
-|      1333.3333 |
-+----------------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales where dob='december';
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE   | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales order by dob=;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
-mysql> select *from sales order by dob;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE  | gasabo |        1500 | december |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      100 | COPINE    | huye   |        1200 | june     |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.02 sec)
-mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
-mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-Query OK, 0 rows affected, 2 warnings (0.02 sec)
-
-mysql> insert into sales value('100','COPINE','huye','1200','june');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('200','BINAH','nyanza','1300','july');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('300','CELINE','gasabo','1500','december');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select *from sales;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      100 | COPINE   | huye   |        1200 | june     |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      300 | CELINE  | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.00 sec)
-
-mysql> select sum(salesamount) as total_amount from sales;
-+--------------+
-| total_amount |
-+--------------+
-|         4000 |
-+--------------+
-1 row in set (0.01 sec)
-
-mysql> select AVG(salesamount) as average_amount from sales;
-+----------------+
-| average_amount |
-+----------------+
-|      1333.3333 |
-+----------------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales where dob='december';
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE   | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales order by dob=;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
-mysql> select *from sales order by dob;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE  | gasabo |        1500 | december |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      100 | COPINE    | huye   |        1200 | june     |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.02 sec)
-mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
-mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-Query OK, 0 rows affected, 2 warnings (0.02 sec)
-
-mysql> insert into sales value('100','COPINE','huye','1200','june');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('200','BINAH','nyanza','1300','july');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('300','CELINE','gasabo','1500','december');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select *from sales;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      100 | COPINE   | huye   |        1200 | june     |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      300 | CELINE  | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.00 sec)
-
-mysql> select sum(salesamount) as total_amount from sales;
-+--------------+
-| total_amount |
-+--------------+
-|         4000 |
-+--------------+
-1 row in set (0.01 sec)
-
-mysql> select AVG(salesamount) as average_amount from sales;
-+----------------+
-| average_amount |
-+----------------+
-|      1333.3333 |
-+----------------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales where dob='december';
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE   | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales order by dob=;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
-mysql> select *from sales order by dob;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE  | gasabo |        1500 | december |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      100 | COPINE    | huye   |        1200 | june     |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.02 sec)
-mysql> create table sales(sales no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10))' at line 1
-mysql> create table sales(sales_no int(5),salesname char(10),branch char(10),salesamount int(10),dob char(10));
-Query OK, 0 rows affected, 2 warnings (0.02 sec)
-
-mysql> insert into sales value('100','COPINE','huye','1200','june');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('200','BINAH','nyanza','1300','july');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into sales value('300','CELINE','gasabo','1500','december');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select *from sales;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      100 | COPINE   | huye   |        1200 | june     |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      300 | CELINE  | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.00 sec)
-
-mysql> select sum(salesamount) as total_amount from sales;
-+--------------+
-| total_amount |
-+--------------+
-|         4000 |
-+--------------+
-1 row in set (0.01 sec)
-
-mysql> select AVG(salesamount) as average_amount from sales;
-+----------------+
-| average_amount |
-+----------------+
-|      1333.3333 |
-+----------------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales where dob='december';
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE   | gasabo |        1500 | december |
-+----------+-----------+--------+-------------+----------+
-1 row in set (0.00 sec)
-
-mysql> select *from sales order by dob=;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
-mysql> select *from sales order by dob;
-+----------+-----------+--------+-------------+----------+
-| sales_no | salesname | branch | salesamount | dob      |
-+----------+-----------+--------+-------------+----------+
-|      300 | CELINE  | gasabo |        1500 | december |
-|      200 | BINAH   | nyanza |        1300 | july     |
-|      100 | COPINE    | huye   |        1200 | june     |
-+----------+-----------+--------+-------------+----------+
-3 rows in set (0.02 sec)
